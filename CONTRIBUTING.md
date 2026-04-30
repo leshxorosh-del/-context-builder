@@ -28,7 +28,7 @@ This project and everyone participating in it is governed by our [Code of Conduc
 
 ### Good First Issues
 
-Looking for a place to start? Check out issues labeled [`good first issue`](https://github.com/yourusername/context-builder/labels/good%20first%20issue) — these are great for newcomers.
+Looking for a place to start? Check out issues labeled [`good first issue`](https://github.com/leshxorosh-del/-context-builder/labels/good%20first%20issue) — these are great for newcomers.
 
 ## How Can I Contribute?
 
@@ -88,11 +88,11 @@ Ready to contribute code? Here's how:
 
 ```bash
 # 1. Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/context-builder.git
+git clone https://github.com/leshxorosh-del/-context-builder.git
 cd context-builder
 
 # 2. Add upstream remote
-git remote add upstream https://github.com/yourusername/context-builder.git
+git remote add upstream https://github.com/leshxorosh-del/-context-builder.git
 
 # 3. Install dependencies
 npm install
@@ -272,6 +272,6 @@ Now they return a proper 401 with TOKEN_EXPIRED code.
 
 ## Questions?
 
-Feel free to open a [Discussion](https://github.com/yourusername/context-builder/discussions) for questions that aren't bugs or feature requests.
+Feel free to open a [Discussion](https://github.com/leshxorosh-del/-context-builder/discussions) for questions that aren't bugs or feature requests.
 
 Thank you for contributing! 💜

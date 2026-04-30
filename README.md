@@ -6,7 +6,7 @@
   **Visual knowledge graph for LLMs — unite context across multiple chats**
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-  [![CI](https://github.com/yourusername/context-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/context-builder/actions/workflows/ci.yml)
+  [![CI](https://github.com/leshxorosh-del/-context-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/leshxorosh-del/-context-builder/actions/workflows/ci.yml)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
   [![React](https://img.shields.io/badge/React-18.2-61dafb)](https://reactjs.org/)
 
@@ -88,7 +88,7 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/context-builder.git
+git clone https://github.com/leshxorosh-del/-context-builder.git
 cd context-builder
 
 # Copy environment template
@@ -203,8 +203,8 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ### Reporting Issues
 
-- 🐛 **Bugs**: [Open an issue](https://github.com/yourusername/context-builder/issues/new?template=bug_report.md)
-- 💡 **Features**: [Request a feature](https://github.com/yourusername/context-builder/issues/new?template=feature_request.md)
+- 🐛 **Bugs**: [Open an issue](https://github.com/leshxorosh-del/-context-builder/issues/new?template=bug_report.md)
+- 💡 **Features**: [Request a feature](https://github.com/leshxorosh-del/-context-builder/issues/new?template=feature_request.md)
 - 🔒 **Security**: See [SECURITY.md](SECURITY.md)
 
 ---
@@ -224,10 +224,27 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ---
 
+## 🌍 README Language
+
+This README is in English for the global open-source community.  
+For a short Russian version, see [README.ru.md](README.ru.md).
+
+---
+
 ## 📬 Contact
 
+- **Email**: `leshxorosh@gmail.com`
+- **Telegram**: [@leshxorosh](https://t.me/leshxorosh)
 - **GitHub Issues**: For bugs and feature requests
 - **Discussions**: For questions and ideas
+
+---
+
+## 🔒 Security
+
+- Security policy and responsible disclosure process: [SECURITY.md](SECURITY.md)
+- Automated security checks in CI: `.github/workflows/security.yml`
+- Dependency update automation: `.github/dependabot.yml`
 
 ---
 

@@ -10,6 +10,8 @@ build/
 
 # Environment files
 .env
+.env.*
+!.env.example
 .env.local
 .env.development.local
 .env.test.local
@@ -29,6 +31,7 @@ Thumbs.db
 # IDE
 .idea/
 .vscode/
+.fleet/
 *.swp
 *.swo
 *~
@@ -52,6 +55,7 @@ data/redis/
 
 # Temporary files
 .scratch/
+.tmp/
 tmp/
 temp/
 
@@ -62,6 +66,10 @@ temp/
 
 # Misc
 .cache/
+.eslintcache
+.turbo/
+.parcel-cache/
+.pnpm-store/
 *.pid
 *.seed
 *.pid.lock
