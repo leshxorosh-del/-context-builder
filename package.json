@@ -1,0 +1,45 @@
+{
+  "name": "context-builder",
+  "version": "1.0.0",
+  "description": "Конструктор контекста — визуальная надстройка над LLM с кросс-чатовым объединением памяти",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "build": "npm run build --workspaces",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "test": "npm run test --workspace=backend",
+    "lint": "npm run lint --workspaces",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "migrate": "npm run migrate --workspace=backend",
+    "migrate:fresh": "npm run migrate:fresh --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leshxorosh-del/-context-builder.git"
+  },
+  "keywords": [
+    "context",
+    "llm",
+    "ai",
+    "memory",
+    "graph",
+    "chat"
+  ],
+  "author": "",
+  "license": "MIT"
+}

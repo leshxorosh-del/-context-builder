@@ -1,0 +1,75 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+.fleet/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+
+# Docker
+docker/data/
+
+# Neo4j data
+neo4j/
+data/neo4j/
+
+# PostgreSQL data
+data/postgres/
+
+# Redis data
+data/redis/
+
+# Temporary files
+.scratch/
+.tmp/
+tmp/
+temp/
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Misc
+.cache/
+.eslintcache
+.turbo/
+.parcel-cache/
+.pnpm-store/
+*.pid
+*.seed
+*.pid.lock

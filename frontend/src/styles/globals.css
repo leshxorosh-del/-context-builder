@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   CSS Variables
+   ========================================== */
+:root {
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  
+  /* React Flow */
+  --rf-background: #f9fafb;
+  --rf-node-chat: #3b82f6;
+  --rf-node-super-chat: #8b5cf6;
+  --rf-edge: #9ca3af;
+  --rf-edge-hover: #6366f1;
+}
+
+/* ==========================================
+   Base Styles
+   ========================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 font-sans;
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================
+   React Flow Customization
+   ========================================== */
+.react-flow__background {
+  background-color: var(--rf-background);
+}
+
+.react-flow__minimap {
+  @apply shadow-lg rounded-lg overflow-hidden;
+}
+
+.react-flow__controls {
+  @apply shadow-lg rounded-lg overflow-hidden;
+}
+
+.react-flow__controls-button {
+  @apply border-gray-200;
+}
+
+.react-flow__controls-button:hover {
+  @apply bg-gray-100;
+}
+
+/* Custom node styles */
+.react-flow__node-chat,
+.react-flow__node-superChat {
+  @apply shadow-md rounded-lg transition-shadow duration-200;
+}
+
+.react-flow__node-chat:hover,
+.react-flow__node-superChat:hover {
+  @apply shadow-xl;
+}
+
+.react-flow__node.selected {
+  @apply ring-2 ring-primary-500 ring-offset-2;
+}
+
+/* Custom edge styles */
+.react-flow__edge-path {
+  stroke: var(--rf-edge);
+  stroke-width: 2;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--rf-edge-hover);
+  stroke-width: 3;
+}
+
+/* ==========================================
+   Scrollbar Customization
+   ========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* ==========================================
+   Utility Classes
+   ========================================== */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+}
+
+/* ==========================================
+   Focus Styles
+   ========================================== */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+}
+
+/* ==========================================
+   Selection
+   ========================================== */
+::selection {
+  @apply bg-primary-100 text-primary-900;
+}
+
+/* ==========================================
+   Toast Customization
+   ========================================== */
+.toast-container {
+  @apply font-sans;
+}
