@@ -83,69 +83,112 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Быстрый старт (Локально)
 
-### Prerequisites
+### Требования
 
-- **Node.js** 20+ 
-- **Docker** & Docker Compose
-- **OpenAI API Key** ([get one here](https://platform.openai.com/api-keys))
+- [Docker](https://www.docker.com/get-started) (с Docker Compose)
+- [Node.js](https://nodejs.org/) 20+ (опционально, для разработки без Docker)
+- Ключ [OpenAI API](https://platform.openai.com/account/api-keys) (для LLM/семантического поиска)
 
-### Option 1: Docker (Recommended)
+### 1. Клонирование и настройка
 
 ```bash
-# Clone the repository
 git clone https://github.com/leshxorosh-del/-context-builder.git
-cd context-builder
-
-# Copy environment template
-cp .env.example .env
-
-# Edit .env and add your OpenAI API key
-# OPENAI_API_KEY=sk-your-key-here
-
-# Start all services (backend container applies SQL migrations on startup)
-docker-compose up -d
-
-# Optional: run migrations from the host against the same DB (e.g. if backend runs locally)
-# npm run migrate --workspace=backend
-
-# Check status
-docker-compose ps
+cd -- -context-builder
 ```
 
-**Access the app:**
-- Frontend: http://localhost:5173
-- API: http://localhost:3001
-- Neo4j Browser: http://localhost:7474
-
-### Option 2: Local Development
+### 2. Настройка переменных окружения
 
 ```bash
-# Install dependencies
-npm install
+chmod +x setup-env.sh && ./setup-env.sh   # Linux/macOS
+# или
+.\setup-env.ps1                           # Windows (PowerShell)
+```
 
-# Start databases only
+После этого отредактируйте `backend/.env`, обязательно вставив свой `OPENAI_API_KEY`.
+
+> ⚠️ **Никогда не коммитьте файл `.env` в репозиторий!** Он добавлен в `.gitignore`. Используйте `.env.example` как шаблон.
+
+### 3. Запуск одной командой
+
+```bash
+./start.sh
+```
+
+Если файл не исполняемый:
+
+```bash
+chmod +x ./start.sh
+./start.sh
+```
+
+Windows PowerShell:
+
+```powershell
+.\start.ps1
+```
+
+Скрипт автоматически:
+- проверяет Docker + Compose;
+- создаёт `.env` из шаблона (если нет);
+- запускает `docker-compose up -d --build`;
+- ждёт готовность сервисов и показывает ссылки.
+
+### 4. Открыть в браузере
+
+- Frontend: `http://localhost:5173` (или порт из `FRONTEND_PORT` в `.env`)
+- Backend API: `http://localhost:3001`
+- Neo4j Browser: `http://localhost:7474` (логин `neo4j`, пароль из `NEO4J_PASSWORD`)
+
+### 5. Остановка
+
+```bash
+docker-compose down
+```
+
+Данные сохраняются в Docker volumes, поэтому при следующем `docker-compose up -d` база останется.
+
+### Примечание о первом запуске
+
+- Миграции PostgreSQL запускаются автоматически в `backend` контейнере при старте.
+- Инициализация индексов/constraints Neo4j тоже запускается автоматически (идемпотентно).
+- Если что-то не применилось:
+
+```bash
+docker-compose exec backend npm run migrate:prod
+docker-compose exec backend npm run neo4j:init
+```
+
+### Частые проблемы
+
+- Если занят порт `5173`: измените `FRONTEND_PORT` в `.env` (например, `FRONTEND_PORT=5180`) и перезапустите compose.
+- Если semantic search недоступен: проверьте `OPENAI_API_KEY` и `OPENAI_EMBEDDING_MODEL`.
+- Если был старый volume Postgres без pgvector: выполните `docker-compose down -v` и поднимите проект заново.
+
+## 🧪 Разработка (без Docker для backend/frontend)
+
+```bash
+# 1) Поднять только базы
 docker-compose up -d postgres neo4j redis
 
-# Run database migrations
-npm run migrate --workspace=backend
+# 2) Установить зависимости монорепо
+npm install
 
-# Initialize Neo4j schema
+# 3) Применить SQL миграции и инициализировать Neo4j
+npm run migrate --workspace=backend
 npm run neo4j:init --workspace=backend
 
-# Start development servers (in separate terminals)
+# 4) Запустить backend и frontend в dev-режиме (в разных терминалах)
 npm run dev --workspace=backend
 npm run dev --workspace=frontend
 ```
 
-### First Steps
+Тесты:
 
-1. Open http://localhost:5173
-2. Register a new account
-3. Create your first chat
-4. Create a Super-Chat and link your chats to it
-5. Start querying with unified context!
+```bash
+npm test
+```
 
 ---
 
