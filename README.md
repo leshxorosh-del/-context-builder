@@ -51,6 +51,13 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 - Query your AI with **combined knowledge** from all linked chats
 - See which sources were used for each response
 - Full conversation history within the Super-Chat
+- **Voice input** (Web Speech API, Russian) in the super-chat composer
+
+### 🔎 Semantic Search
+- **Ctrl/Cmd+K** (or header search): find chats by meaning, not only keywords (pgvector + OpenAI embeddings)
+- Modes: **hybrid** (messages + chat summaries), **messages**, **chats**
+- Open a hit on the map with highlighted messages, or **link the chat to a super-chat** from the result card
+- Full-page results: `/search?q=…`
 
 ### 📊 Daily Digests & Notifications
 - **LLM-generated summaries** of activity across your projects
@@ -70,7 +77,7 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 |-------|-------------|
 | **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, React Flow, Zustand |
 | **Backend** | Node.js, Express, TypeScript, Socket.io |
-| **Databases** | PostgreSQL (relational), Neo4j (graph), Redis (cache) |
+| **Databases** | PostgreSQL + **pgvector** (semantic search), Neo4j (graph), Redis (cache) |
 | **AI** | OpenAI API (GPT-4 Turbo) |
 | **DevOps** | Docker, Docker Compose, GitHub Actions |
 
@@ -97,8 +104,11 @@ cp .env.example .env
 # Edit .env and add your OpenAI API key
 # OPENAI_API_KEY=sk-your-key-here
 
-# Start all services
+# Start all services (backend container applies SQL migrations on startup)
 docker-compose up -d
+
+# Optional: run migrations from the host against the same DB (e.g. if backend runs locally)
+# npm run migrate --workspace=backend
 
 # Check status
 docker-compose ps

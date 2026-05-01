@@ -12,6 +12,7 @@ Context Builder связывает чаты в граф и позволяет ф
 - Визуальная карта чатов и супер-чатов
 - Выбор конкретных сообщений для контекста (экономия токенов)
 - Супер-чат с объединённой памятью
+- **Семантический поиск** по всем чатам (Ctrl+K), голосовой ввод, связь найденного чата со супер-чатом
 - LLM-дайджесты и уведомления (Telegram / Email / Slack)
 
 ## Быстрый старт
@@ -21,6 +22,7 @@ git clone https://github.com/leshxorosh-del/-context-builder.git
 cd context-builder
 cp .env.example .env
 docker-compose up -d
+npm run migrate --workspace=backend
 ```
 
 Подробная документация: [README.md](README.md)
