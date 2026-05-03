@@ -5,12 +5,13 @@
   
   **Visual knowledge graph for LLMs — unite context across multiple chats**
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-  [![CI](https://github.com/leshxorosh-del/-context-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/leshxorosh-del/-context-builder/actions/workflows/ci.yml)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
-  [![React](https://img.shields.io/badge/React-18.2-61dafb)](https://reactjs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/leshxorosh-del/-context-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/leshxorosh-del/-context-builder/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.2-61dafb)](https://reactjs.org/)
+[![Contributions Welcome](https://img.shields.io/badge/Contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-  [Features](#-features) • [Quick Start](#-quick-start) • [Architecture](#-architecture) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](#-quick-start) • [Architecture](#-architecture) • [Contributing](#-contributing)
 
 </div>
 
@@ -18,9 +19,11 @@
 
 ## 🎯 The Problem
 
-When working with AI assistants, your knowledge gets **fragmented across dozens of separate chats**. Each conversation exists in isolation — the AI doesn't remember what you discussed yesterday, in another chat, or in a different context.
+When working with AI assistants, your knowledge gets **fragmented across dozens of separate chats**. Each conversation exists in isolation — the AI doesn't remember what you discussed yesterday, in another chat, or in a different context.  
+**Код читаемый, стиль автоматизирован, секреты под защитой.**
 
 **Context Builder** solves this by letting you:
+
 - Visualize all your chats as a **project map** (graph)
 - **Connect related chats** into "Super Chats" with unified context
 - **Selectively include specific messages** (not entire chats) to save tokens
@@ -38,33 +41,39 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 ## ✨ Features
 
 ### 🗺️ Visual Project Map
+
 - **Drag-and-drop graph editor** powered by React Flow
 - Chat nodes (blue) and Super-Chat nodes (purple)
 - Visual context links showing message selection status
 
 ### 🔗 Smart Context Merging
+
 - Connect multiple chats to a single Super-Chat
 - **Selective message inclusion** — check only the messages you need
 - Token counter shows estimated context size
 
 ### 💬 Super-Chat Conversations
+
 - Query your AI with **combined knowledge** from all linked chats
 - See which sources were used for each response
 - Full conversation history within the Super-Chat
 - **Voice input** (Web Speech API, Russian) in the super-chat composer
 
 ### 🔎 Semantic Search
+
 - **Ctrl/Cmd+K** (or header search): find chats by meaning, not only keywords (pgvector + OpenAI embeddings)
 - Modes: **hybrid** (messages + chat summaries), **messages**, **chats**
 - Open a hit on the map with highlighted messages, or **link the chat to a super-chat** from the result card
 - Full-page results: `/search?q=…`
 
 ### 📊 Daily Digests & Notifications
+
 - **LLM-generated summaries** of activity across your projects
 - Push to Telegram, Email, or Slack
 - Configurable schedule and triggers
 
 ### 💳 Flexible Pricing Model (Self-Hosted)
+
 - **Free**: 3 queries/day
 - **Monthly**: 50 initial + 2/day (accumulates up to 100)
 - **Yearly**: Unlimited
@@ -73,13 +82,13 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 
 ## 🛠️ Tech Stack
 
-| Layer | Technologies |
-|-------|-------------|
-| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, React Flow, Zustand |
-| **Backend** | Node.js, Express, TypeScript, Socket.io |
+| Layer         | Technologies                                                              |
+| ------------- | ------------------------------------------------------------------------- |
+| **Frontend**  | React 18, TypeScript, Vite, Tailwind CSS, React Flow, Zustand             |
+| **Backend**   | Node.js, Express, TypeScript, Socket.io                                   |
 | **Databases** | PostgreSQL + **pgvector** (semantic search), Neo4j (graph), Redis (cache) |
-| **AI** | OpenAI API (GPT-4 Turbo) |
-| **DevOps** | Docker, Docker Compose, GitHub Actions |
+| **AI**        | OpenAI API (GPT-4 Turbo)                                                  |
+| **DevOps**    | Docker, Docker Compose, GitHub Actions                                    |
 
 ---
 
@@ -130,6 +139,7 @@ Windows PowerShell:
 ```
 
 Скрипт автоматически:
+
 - проверяет Docker + Compose;
 - создаёт `.env` из шаблона (если нет);
 - запускает `docker-compose up -d --build`;
@@ -229,20 +239,21 @@ Full API documentation is available in [backend/README.md](backend/README.md).
 
 **Key endpoints:**
 
-| Endpoint | Description |
-|----------|-------------|
-| `POST /api/auth/register` | Create account |
-| `GET /api/chats` | List user's chats |
-| `POST /api/super-chats` | Create a Super-Chat |
-| `POST /api/super-chats/:id/link` | Link a chat to Super-Chat |
+| Endpoint                          | Description               |
+| --------------------------------- | ------------------------- |
+| `POST /api/auth/register`         | Create account            |
+| `GET /api/chats`                  | List user's chats         |
+| `POST /api/super-chats`           | Create a Super-Chat       |
+| `POST /api/super-chats/:id/link`  | Link a chat to Super-Chat |
 | `POST /api/super-chats/:id/query` | Query with merged context |
-| `GET /api/project-map` | Get visual graph data |
+| `GET /api/project-map`            | Get visual graph data     |
 
 ---
 
 ## 🤝 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Security-first checklist for PRs: [security/SECURITY_CHECKLIST.md](security/SECURITY_CHECKLIST.md)
 
 ### Quick Contribution Guide
 

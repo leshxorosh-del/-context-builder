@@ -15,7 +15,9 @@
     "build:backend": "npm run build --workspace=backend",
     "build:frontend": "npm run build --workspace=frontend",
     "test": "npm run test --workspace=backend",
-    "lint": "npm run lint --workspaces",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:workspaces": "npm run lint --workspaces",
+    "format": "prettier --write .",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
@@ -23,7 +25,8 @@
     "migrate:fresh": "npm run migrate:fresh --workspace=backend"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "prettier": "^3.8.3"
   },
   "engines": {
     "node": ">=20.0.0"

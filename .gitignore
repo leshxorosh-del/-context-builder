@@ -36,6 +36,9 @@ Thumbs.db
 *.swp
 *.swo
 *~
+!.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # Testing
 coverage/
