@@ -10,6 +10,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.2-61dafb)](https://reactjs.org/)
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![AI Agent Ready](https://img.shields.io/badge/AI%20Agent-Ready-6f42c1)](AI_AGENT_MANIFEST.md)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/leshxorosh-del/-context-builder&root-directory=frontend)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/leshxorosh-del/-context-builder)
 
 [Features](#-features) • [Quick Start](#-quick-start) • [Architecture](#-architecture) • [Contributing](#-contributing)
 
@@ -66,6 +69,30 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 - Open a hit on the map with highlighted messages, or **link the chat to a super-chat** from the result card
 - Full-page results: `/search?q=…`
 
+### 🧠 Auto-Link Engine
+
+- System suggests linking chats by semantic similarity (summary vectors in pgvector)
+- Suggestions appear in map UI and can be accepted in one click
+- AI agents can fetch suggestions and auto-accept high-confidence links via API
+
+### 🎯 Agent Cognitive Profiles
+
+- Preset roles (SEO analyst, copywriter, fact-checker, architect, researcher, custom) with **search strategy**, **auto-link thresholds**, **source requirements**, and **per-chat system instructions**
+- API: `GET /api/v1/agent-profiles`, `POST /api/v1/chats/:id/set-profile`, `GET|PATCH /api/v1/chats/:id/profile`
+- Global search accepts `context_chat_id` to inherit a chat’s `agent_search_strategy` (semantic / keyword / hybrid)
+- Agents can send `X-Agent-Request: true` on chat create for lightweight profile auto-detection
+
+### 🔌 Agent Compatibility Panel
+
+- **Protocol status** screen at `/settings/protocol` (sidebar: «Статус протокола»): LAMP v0.2 indicator, checklist of agent-facing features, one-click **compatibility check** (`GET /api/v1/compatibility`)
+- Links to **OpenAPI** (`docs/openapi.yaml`) and **agent smoke test** (`examples/smoke_test.sh`)
+
+### 🛡️ Agent Trust Protocol (LAMP v0.2)
+
+- **Ed25519**: agent chats get a keypair when a cognitive profile is applied; only the **public** key is stored server-side.
+- **Reputation & audit**: trust scores, tamper-evident audit chain, WebSocket feed for humans (`/agent-dashboard`, `/agent-trust`).
+- **Federation**: export/import portable agent profiles; experimental multi-instance search fan-out (`/api/v1/federation/*`).
+
 ### 📊 Daily Digests & Notifications
 
 - **LLM-generated summaries** of activity across your projects
@@ -74,9 +101,31 @@ When working with AI assistants, your knowledge gets **fragmented across dozens 
 
 ### 💳 Flexible Pricing Model (Self-Hosted)
 
-- **Free**: 3 queries/day
-- **Monthly**: 50 initial + 2/day (accumulates up to 100)
-- **Yearly**: Unlimited
+- **Free** (после окончания триала): до **5 чатов**, **1 супер-чат**, **3 умных запроса** (накопление до лимита плана), e-mail уведомления
+- **Monthly**: 50 начальных + 2/день (до 100), безлимит чатов / супер-чатов в демо-режиме
+- **Yearly**: безлимит запросов в демо-конфигурации
+- Новые аккаунты получают **7 дн. trial** с квотами месячного плана (`trial_ends_at` в БД); далее — автоматический переход на **free**, пока не оформлен апгрейд
+
+## One-Click Deploy
+
+- **Vercel (только UI)**: корневой `vercel.json` собирает workspace `frontend`. Укажите `VITE_API_URL` на ваш публичный backend.
+- **Render (API и шаблон)**: см. корневой `render.yaml` — задайте `DATABASE_URL`, Redis, Neo4j и секреты в панели Render (полный стек тяжёлее одной кнопки; файл — стартовая точка).
+
+Кнопки-шильдики также вверху README (Vercel / Render).
+
+## Try for Free
+
+1. Откройте публичный лендинг `/` → **Попробовать бесплатно** → регистрация.  
+2. Пройдите **онбординг** (два чата + подсказка «Создать связь» на карте) или нажмите «Пропустить».  
+3. **7 дней** действует пробный месячный тариф; после истечения (`018` миграция + почасовой cron) аккаунт переходит на **free** с лимитами выше.
+
+## 🤖 For AI Agents
+
+Context Builder provides a graph-based shared memory with token-efficient message selection for autonomous agents.  
+Start with [`AI_AGENT_MANIFEST.md`](AI_AGENT_MANIFEST.md) and integrate via [`docs/openapi.yaml`](docs/openapi.yaml).
+To verify compatibility, run `bash examples/smoke_test.sh`.
+
+**Agent-facing capabilities** (also summarized in-app under **Agent Compatibility Panel** → `/settings/protocol`): selective message inclusion, semantic search, batch API, health/metrics, rate-limit headers, HTTP caching (where enabled), voice transcription, multi-channel notifications, per-chat cognitive profiles, Auto-Link Engine, **Ed25519-signed agent messages**, **reputation scoring**, **audit trail**, **federation hooks**. Live probe: `GET /api/v1/compatibility` (authenticated).
 
 ---
 
@@ -163,6 +212,7 @@ docker-compose down
 
 - Миграции PostgreSQL запускаются автоматически в `backend` контейнере при старте.
 - Инициализация индексов/constraints Neo4j тоже запускается автоматически (идемпотентно).
+- Auto-Link предложения генерируются фоновым cron-процессом каждые 10 минут.
 - Если что-то не применилось:
 
 ```bash
@@ -198,7 +248,10 @@ npm run dev --workspace=frontend
 
 ```bash
 npm test
+npm run test:contract --workspace=backend
 ```
+
+Для контрактных тестов укажите URL живого API в `backend/.env.test` (можно скопировать из `backend/.env.test.example`).
 
 ---
 

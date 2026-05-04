@@ -1,0 +1,14 @@
+# Render blueprint stub: в панели Render задайте DATABASE_URL, REDIS_URL, NEO4J_*, OPENAI_* и JWT_*.
+# Этот файл — отправная точка «Deploy to Render»; при необходимости добавьте managed Postgres/Redis.
+
+version: "1"
+services:
+  - type: web
+    name: context-builder-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

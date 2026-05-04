@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- v0.8.0 — One-Click SaaS: публичный лендинг (`/`), онбординг из трёх шагов после регистрации, лимиты free tier (5 чатов, 1 супер-чат, HTTP 402 при превышении), 7-дневный trial месячного тарифа (`trial_ends_at`, cron сброса), админ-метрики `GET /api/v1/admin/metrics`, страница `/admin`; кнопки Deploy (Vercel/Render) и шаблоны в README.
+- v0.7.0 — Agent Trust Protocol (LAMP v0.2): Ed25519 agent keys on cognitive-profile chats (private key returned once; rotate-keys archives public keys); optional signed chat messages + `agent_require_signature`; reputation (`agent_reputation`, trust_score), audit hash-chain log with WebSocket `audit:new-entry` / `agent:trust-score-changed`; APIs `/api/v1/reputation/*`, `/api/v1/audit/*`, `/api/v1/federation/*`, `/api/v1/trust/dashboard`; frontend `/agent-trust`, `/agent-dashboard`; connector stubs in `packages/langchain-connector` and `packages/crewai-connector`.
+- v0.6.0 — Agent Cognitive Profiles, Auto-Link Engine UI, Agent Compatibility Panel (preset roles, `set-profile` API, map + panel UX, LAMP checklist and compatibility probe).
+- v0.5.0 - Auto-Link Engine: semantic similarity-based chat linking suggestions, agent auto-accept, real-time WebSocket notifications.
+- v0.4.0 - AI Agent Magnet: 1:1 OpenAPI validation, agent metrics in health, rate-limit headers, caching, CORS, compatibility endpoint, smoke tests.
+- v0.3.0 - AI Agent Ready: OpenAPI spec, AI_AGENT_MANIFEST.md, batch API, example agents, LAMP RFC draft, health endpoint, unified error format.
 - Unified repository-level lint/format setup (`.eslintrc.json`, `.prettierrc`, VSCode settings).
 - New contributor safety docs and scripts in `security/`:
   - `SECURITY_CHECKLIST.md`
